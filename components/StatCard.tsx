@@ -1,50 +1,48 @@
 import { ReactNode } from "react";
+import {
+  Users,
+  Wallet,
+  ArrowDownCircle,
+  Target
+} from "lucide-react";
 
-interface StatCardProps {
-  icon: ReactNode;
-  label: string;
-  value: string;
-  badge?: string;
-  accent?: "blue" | "green" | "orange";
-}
+type StatCardProps = {
+  title: string;
+  value: string | number;
+  icon: "users" | "wallet" | "income" | "target";
+  subtitle?: string;
+};
 
-const accentMap = {
-  blue: "bg-blue-500/15 text-blue-400",
-  green: "bg-emerald-500/15 text-emerald-400",
-  orange: "bg-orange-500/15 text-orange-400",
+const iconMap: Record<StatCardProps["icon"], ReactNode> = {
+  users: <Users size={28} strokeWidth={1.5} />,
+  wallet: <Wallet size={28} strokeWidth={1.5} />,
+  income: <ArrowDownCircle size={28} strokeWidth={1.5} />,
+  target: <Target size={28} strokeWidth={1.5} />,
 };
 
 export default function StatCard({
-  icon,
-  label,
+  title,
   value,
-  badge,
-  accent = "blue",
+  icon,
+  subtitle,
 }: StatCardProps) {
   return (
-    <div className="glass-card rounded-2xl p-6 h-[150px] flex flex-col justify-between">
-      {/* Top */}
-      <div className="flex items-start justify-between">
-        <div
-          className={`w-11 h-11 rounded-xl flex items-center justify-center ${accentMap[accent]}`}
-        >
-          {icon}
+    <div className="glass-card rounded-2xl p-5 flex flex-col gap-3">
+      <div className="flex items-center justify-between">
+        <div className="text-blue-400">{iconMap[icon]}</div>
+      </div>
+
+      <div className="text-sm text-slate-400">{title}</div>
+
+      <div className="text-2xl font-semibold text-white">
+        {value}
+      </div>
+
+      {subtitle && (
+        <div className="text-xs text-slate-500">
+          {subtitle}
         </div>
-
-        {badge && (
-          <span className="text-[11px] px-2 py-1 rounded-full bg-blue-500/10 text-blue-300">
-            {badge}
-          </span>
-        )}
-      </div>
-
-      {/* Bottom */}
-      <div className="space-y-1">
-        <p className="text-sm text-slate-400 leading-none">{label}</p>
-        <p className="text-2xl font-semibold tracking-tight text-white">
-          {value}
-        </p>
-      </div>
+      )}
     </div>
   );
 }
