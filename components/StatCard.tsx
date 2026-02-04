@@ -3,7 +3,7 @@ import {
   Users,
   Wallet,
   ArrowDownCircle,
-  Target
+  Target,
 } from "lucide-react";
 
 type StatCardProps = {
@@ -14,10 +14,10 @@ type StatCardProps = {
 };
 
 const iconMap: Record<StatCardProps["icon"], ReactNode> = {
-  users: <Users size={28} strokeWidth={1.5} />,
-  wallet: <Wallet size={28} strokeWidth={1.5} />,
-  income: <ArrowDownCircle size={28} strokeWidth={1.5} />,
-  target: <Target size={28} strokeWidth={1.5} />,
+  users: <Users size={26} strokeWidth={2.2} />,
+  wallet: <Wallet size={26} strokeWidth={2.2} />,
+  income: <ArrowDownCircle size={26} strokeWidth={2.2} />,
+  target: <Target size={26} strokeWidth={2.2} />,
 };
 
 export default function StatCard({
@@ -28,16 +28,22 @@ export default function StatCard({
 }: StatCardProps) {
   return (
     <div className="glass-card rounded-2xl p-5 flex flex-col gap-3">
-      <div className="flex items-center justify-between">
-        <div className="text-blue-400">{iconMap[icon]}</div>
+      {/* ICON */}
+      <div className="w-11 h-11 rounded-xl bg-blue-500/15 flex items-center justify-center text-blue-400 [shape-rendering:geometricPrecision]">
+        {iconMap[icon]}
       </div>
 
-      <div className="text-sm text-slate-400">{title}</div>
+      {/* TITLE */}
+      <div className="text-sm text-slate-400">
+        {title}
+      </div>
 
+      {/* VALUE */}
       <div className="text-2xl font-semibold text-white">
         {value}
       </div>
 
+      {/* SUBTITLE */}
       {subtitle && (
         <div className="text-xs text-slate-500">
           {subtitle}
