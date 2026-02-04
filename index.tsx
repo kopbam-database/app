@@ -14,3 +14,12 @@ root.render(
     <App />
   </React.StrictMode>
 );
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
