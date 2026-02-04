@@ -1,1 +1,10 @@
+/* FIX SVG ICON STROKE (Lucide / Heroicons) */
+svg {
+  shape-rendering: geometricPrecision;
+}
+
+svg path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 /* dummy file supaya Vite tidak error */
